@@ -5,9 +5,9 @@ const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "config.js": "f0d121a7223e4d8729c84af9053e3947",
 "main.dart.js": "3239ae5f242f9c0cb81ec95578d3d9f2",
-"remove_language.js": "0b3e27cee2021cde798214075ff0788d",
-"index.html": "8570af3bd27ebe316739cf97249857e1",
-"/": "8570af3bd27ebe316739cf97249857e1",
+"remove_language.js": "29b8a7ad6075c37e13bc12560c01aa71",
+"index.html": "9c3279680284733373adb059519a5f5a",
+"/": "9c3279680284733373adb059519a5f5a",
 "remove_spinner.js": "c1d88f3486ac03aa39578ea09e5e24ae",
 "manifest.json": "75d4d55cea23d0a8f26df575febec913",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
@@ -77,15 +77,15 @@ const CORE = [
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
-// self.addEventListener("install", (event) => {
-//   self.skipWaiting();
-//   return event.waitUntil(
-//     caches.open(TEMP).then((cache) => {
-//       return cache.addAll(
-//         CORE.map((value) => new Request(value, {'cache': 'reload'})));
-//     })
-//   );
-// });
+self.addEventListener("install", (event) => {
+  self.skipWaiting();
+  return event.waitUntil(
+    caches.open(TEMP).then((cache) => {
+      cache.addAll(
+        CORE.map((value) => new Request(value, {'cache': 'reload'})));
+    })
+  );
+});
 
 // During activate, the cache is populated with the temp files downloaded in
 // install. If this service worker is upgrading from one with a saved
