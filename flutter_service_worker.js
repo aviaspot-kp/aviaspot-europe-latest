@@ -1,13 +1,13 @@
 'use strict';
 const MANIFEST = 'flutter-app-manifest';
-const TEMP = 'sflutter-temp-cache';
+const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "config.js": "f0d121a7223e4d8729c84af9053e3947",
 "main.dart.js": "3239ae5f242f9c0cb81ec95578d3d9f2",
 "remove_language.js": "29b8a7ad6075c37e13bc12560c01aa71",
-"index.html": "6006765f6ce2a12884912841248eeded",
-"/": "6006765f6ce2a12884912841248eeded",
+"index.html": "ed6840403f61005bd300b96b0fa94599",
+"/": "ed6840403f61005bd300b96b0fa94599",
 "remove_spinner.js": "c1d88f3486ac03aa39578ea09e5e24ae",
 "manifest.json": "75d4d55cea23d0a8f26df575febec913",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
