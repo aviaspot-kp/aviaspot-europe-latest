@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <base href="/aviaspot-europe-latest/">
+  <base href="/">
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -77,6 +77,11 @@
 
     firebase.initializeApp(firebaseConfig);
 
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('flutter_service_worker.js?v=1882085864');
+      });
+    }
   </script>
   <script src="main.dart.js" type="application/javascript" defer></script>
   <script src="remove_spinner.js" type="application/javascript" defer></script>
