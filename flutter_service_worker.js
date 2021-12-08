@@ -79,16 +79,18 @@ const CORE = [
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
   self.skipWaiting();
-  return event.waitUntil(
-    caches.open(TEMP).then((cache) => {
-     try {
-      cache.addAll(
-        CORE.map((value) => new Request(value, {'cache': 'reload'})));
-     } catch (error) {
-       console.log(error)
-     }
-    })
-  );
+   try {
+    event.waitUntil(
+      caches.open(TEMP).then((cache) => {
+       
+        cache.addAll(
+          CORE.map((value) => new Request(value, {'cache': 'reload'})));
+      
+      })
+    );
+   } catch (error) {
+     console.log(error)
+   }
 });
 
 // During activate, the cache is populated with the temp files downloaded in
