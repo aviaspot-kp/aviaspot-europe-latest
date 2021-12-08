@@ -1,13 +1,13 @@
 'use strict';
 const MANIFEST = 'flutter-app-manifest';
-const TEMP = 'flutter-temp-cache';
+const TEMP = 'sflutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "config.js": "f0d121a7223e4d8729c84af9053e3947",
 "main.dart.js": "3239ae5f242f9c0cb81ec95578d3d9f2",
 "remove_language.js": "29b8a7ad6075c37e13bc12560c01aa71",
-"index.html": "40fdc1ee195064116c05b03a6e43e30c",
-"/": "40fdc1ee195064116c05b03a6e43e30c",
+"index.html": "6006765f6ce2a12884912841248eeded",
+"/": "6006765f6ce2a12884912841248eeded",
 "remove_spinner.js": "c1d88f3486ac03aa39578ea09e5e24ae",
 "manifest.json": "75d4d55cea23d0a8f26df575febec913",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
@@ -79,18 +79,12 @@ const CORE = [
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
   self.skipWaiting();
-   try {
-    event.waitUntil(
-      caches.open(TEMP).then((cache) => {
-       
-        cache.addAll(
-          CORE.map((value) => new Request(value, {'cache': 'reload'})));
-      
-      })
-    );
-   } catch (error) {
-     console.log(error)
-   }
+  return event.waitUntil(
+    caches.open(TEMP).then((cache) => {
+      return cache.addAll(
+        CORE.map((value) => new Request(value, {'cache': 'reload'})));
+    })
+  );
 });
 
 // During activate, the cache is populated with the temp files downloaded in
