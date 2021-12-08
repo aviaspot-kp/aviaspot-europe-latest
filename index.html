@@ -77,7 +77,7 @@
 
     firebase.initializeApp(firebaseConfig);
 
-    var serviceWorkerVersion = '4001927714';
+    var serviceWorkerVersion = '2687119604';
     var scriptLoaded = false;
     function loadMainDartJs() {
       if (scriptLoaded) {
@@ -136,15 +136,13 @@
             loadMainDartJs();
           }
         }, 4000);
-        navigator.serviceWorker.register('flutter_service_worker.js?v=4001927714');
       });
     } else {
       // Service workers not supported. Just drop the <script> tag.
       loadMainDartJs();
     }
-
   </script>
-  <!-- <script src="main.dart.js" type="application/javascript"></script> -->
+  <!-- <script src="main.dart.js" type="application/javascript" defer></script> -->
   <script src="remove_spinner.js" type="application/javascript" defer></script>
 </body>
 
