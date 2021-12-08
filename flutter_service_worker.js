@@ -5,9 +5,9 @@ const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "config.js": "f0d121a7223e4d8729c84af9053e3947",
 "main.dart.js": "3239ae5f242f9c0cb81ec95578d3d9f2",
-"remove_language.js": "570d74139b2782ed61c7dc570f014b60",
-"index.html": "74107d4eabfa663f69af4874b621b930",
-"/": "74107d4eabfa663f69af4874b621b930",
+"remove_language.js": "0b3e27cee2021cde798214075ff0788d",
+"index.html": "8570af3bd27ebe316739cf97249857e1",
+"/": "8570af3bd27ebe316739cf97249857e1",
 "remove_spinner.js": "c1d88f3486ac03aa39578ea09e5e24ae",
 "manifest.json": "75d4d55cea23d0a8f26df575febec913",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
@@ -77,15 +77,15 @@ const CORE = [
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
-self.addEventListener("install", (event) => {
-  self.skipWaiting();
-  return event.waitUntil(
-    caches.open(TEMP).then((cache) => {
-      cache.addAll(
-        CORE.map((value) => new Request(value, {'cache': 'reload'})));
-    })
-  );
-});
+// self.addEventListener("install", (event) => {
+//   self.skipWaiting();
+//   return event.waitUntil(
+//     caches.open(TEMP).then((cache) => {
+//       return cache.addAll(
+//         CORE.map((value) => new Request(value, {'cache': 'reload'})));
+//     })
+//   );
+// });
 
 // During activate, the cache is populated with the temp files downloaded in
 // install. If this service worker is upgrading from one with a saved
@@ -189,7 +189,32 @@ self.addEventListener('message', (event) => {
     self.skipWaiting();
     return;
   }
+  if (event.data === 'downloadOffline') {
+    downloadOffline();
+    return;
+  }
 });
+
+// Download offline will check the RESOURCES for all files not in the cache
+// and populate them.
+async function downloadOffline() {
+  var resources = [];
+  var contentCache = await caches.open(CACHE_NAME);
+  var currentContent = {};
+  for (var request of await contentCache.keys()) {
+    var key = request.url.substring(origin.length + 1);
+    if (key == "") {
+      key = "/";
+    }
+    currentContent[key] = true;
+  }
+  for (var resourceKey of Object.keys(RESOURCES)) {
+    if (!currentContent[resourceKey]) {
+      resources.push(resourceKey);
+    }
+  }
+  return contentCache.addAll(resources);
+}
 
 // Attempt to download the resource online before falling back to
 // the offline cache.

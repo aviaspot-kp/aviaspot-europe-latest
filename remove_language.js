@@ -3,3 +3,4 @@ if (navigator.language.includes("en")) {
 } else {
   document.getElementById("en").remove();
 }
+//
