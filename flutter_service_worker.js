@@ -67,17 +67,7 @@ const RESOURCES = {
 "version.json": "0d8c555ab88fba9325fda778479e5a9d"
 };
 
-// The application shell files that are downloaded before a service worker can
-// start.
-const CORE = [
-  "/",
-"main.dart.js",
-"index.html",
-"assets/NOTICES",
-"assets/AssetManifest.json",
-"assets/FontManifest.json"];
-// During install, the TEMP cache is populated with the application shell files.
-console.log("placeholder for removed fucntion")
+console.log("placeholder for removed fucntion AND CORE list")
 
 
 // During activate, the cache is populated with the temp files downloaded in
