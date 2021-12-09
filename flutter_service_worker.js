@@ -77,18 +77,8 @@ const CORE = [
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
-self.addEventListener("install", (event) => {
-  self.skipWaiting();
-  return event.waitUntil(async function(){
-    var tempCache = await caches.open(TEMP);
-    tempCache.addAll(CORE.map((value) => new Request(value, {'cache': 'reload'})))
-  console.log("TEMP cahche populated");
+console.log("placeholder for removed fucntion")
 
-  }
-   
-   
-  );
-});
 
 // During activate, the cache is populated with the temp files downloaded in
 // install. If this service worker is upgrading from one with a saved
