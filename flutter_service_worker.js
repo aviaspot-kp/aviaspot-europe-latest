@@ -70,18 +70,6 @@ const RESOURCES = {
 // The application shell files that are downloaded before a service worker can
 // start.
 console.log("test #2")
-const CORE = [
-"main.dart.js"];
-// During install, the TEMP cache is populated with the application shell files.
-self.addEventListener("install", (event) => {
-  self.skipWaiting();
-  return event.waitUntil(
-    caches.open(TEMP).then((cache) => {
-      return cache.addAll(
-        CORE.map((value) => new Request(value, {'cache': 'reload'})));
-    })
-  );
-});
 
 // During activate, the cache is populated with the temp files downloaded in
 // install. If this service worker is upgrading from one with a saved
