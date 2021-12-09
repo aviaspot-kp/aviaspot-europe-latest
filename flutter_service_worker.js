@@ -6,8 +6,8 @@ const RESOURCES = {
   "config.js": "f0d121a7223e4d8729c84af9053e3947",
 "main.dart.js": "3239ae5f242f9c0cb81ec95578d3d9f2",
 "remove_language.js": "29b8a7ad6075c37e13bc12560c01aa71",
-"index.html": "279239730c0d40281d25150e2eaa3c3e",
-"/": "279239730c0d40281d25150e2eaa3c3e",
+"index.html": "c75fab6ca6ca74daf9d464eef4035ddb",
+"/": "c75fab6ca6ca74daf9d464eef4035ddb",
 "remove_spinner.js": "c1d88f3486ac03aa39578ea09e5e24ae",
 "manifest.json": "75d4d55cea23d0a8f26df575febec913",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
@@ -81,7 +81,7 @@ self.addEventListener("install", (event) => {
   self.skipWaiting();
   return event.waitUntil(
     caches.open(TEMP).then((cache) => {
-      return cache.addAll(
+      cache.addAll(
         CORE.map((value) => new Request(value, {'cache': 'reload'})));
     })
   );
