@@ -4,10 +4,10 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "config.js": "f0d121a7223e4d8729c84af9053e3947",
-"main.dart.js": "3239ae5f242f9c0cb81ec95578d3d9f2",
-"remove_language.js": "29b8a7ad6075c37e13bc12560c01aa71",
-"index.html": "84c11d4a3de392cc19dae0e438e67486",
-"/": "84c11d4a3de392cc19dae0e438e67486",
+"main.dart.js": "34e3966e388b8b017d0bf084fc747b6b",
+"remove_language.js": "30eb64a0fc7f0594b638c781e18ba9a2",
+"index.html": "a5183d0ecad87772bfd982a86ef111fe",
+"/": "a5183d0ecad87772bfd982a86ef111fe",
 "remove_spinner.js": "c1d88f3486ac03aa39578ea09e5e24ae",
 "manifest.json": "75d4d55cea23d0a8f26df575febec913",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
@@ -54,7 +54,7 @@ const RESOURCES = {
 "assets/packages/flutter_math_fork/lib/katex_fonts/fonts/KaTeX_SansSerif-Regular.ttf": "b5f967ed9e4933f1c3165a12fe3436df",
 "assets/packages/flutter_math_fork/lib/katex_fonts/fonts/KaTeX_Math-Italic.ttf": "a7732ecb5840a15be39e1eda377bc21d",
 "assets/packages/wakelock_web/assets/no_sleep.js": "7748a45cd593f33280669b29c2c8919a",
-"assets/NOTICES": "4a7a97417f8b5c0c644469774b342be7",
+"assets/NOTICES": "c0950d837075a948951471fc66f09716",
 "assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
 "assets/assets/elastic_viewer.json": "25be08a53bec82b80743edf15e069327",
 "assets/assets/images/download_appstore.png": "3deb18293ea34494e1d4b67d54161d27",
@@ -63,7 +63,7 @@ const RESOURCES = {
 "assets/assets/images/download_googleplay.png": "78651a3d10b818bde6006ab5d28ea06e",
 "assets/AssetManifest.json": "15c62bf724cbc838e890acb44bfc7ce6",
 "assets/FontManifest.json": "3ba95e877e8d977ed295b7a8efefeff7",
-"css/styles.css": "ebb1cc5f8c7bdaf753bce408be48cbf2",
+"css/styles.css": "9f6902affeaf947033b185ee36d8c57a",
 "version.json": "0d8c555ab88fba9325fda778479e5a9d"
 };
 

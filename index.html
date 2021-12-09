@@ -77,7 +77,7 @@
 
     firebase.initializeApp(firebaseConfig);
 
-    var serviceWorkerVersion = '2241745195';
+    var serviceWorkerVersion = '314171947';
     var scriptLoaded = false;
     function loadMainDartJs() {
       if (scriptLoaded) {
@@ -87,15 +87,7 @@
       var scriptTag = document.createElement('script');
       scriptTag.src = 'main.dart.js';
       scriptTag.type = 'application/javascript';
-      scriptTag.async = false
       document.body.append(scriptTag);
-
-      var removeSpinnerTag = document.createElement('script');
-      removeSpinnerTag.src = 'remove_spinner.js';
-      removeSpinnerTag.type = 'application/javascript';
-      removeSpinnerTag.async = false
-      document.body.append(removeSpinnerTag);
-      
     }
 
     if ('serviceWorker' in navigator) {
