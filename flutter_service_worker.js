@@ -69,7 +69,7 @@ const RESOURCES = {
 
 // The application shell files that are downloaded before a service worker can
 // start.
-console.log("test #2")
+console.log("test #44")
 
 // During activate, the cache is populated with the temp files downloaded in
 // install. If this service worker is upgrading from one with a saved
