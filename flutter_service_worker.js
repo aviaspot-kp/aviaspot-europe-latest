@@ -6,10 +6,10 @@ const RESOURCES = {
   "config.js": "f0d121a7223e4d8729c84af9053e3947",
 "main.dart.js": "3239ae5f242f9c0cb81ec95578d3d9f2",
 "remove_language.js": "29b8a7ad6075c37e13bc12560c01aa71",
-"index.html": "03fc51a1f8d231cbc99361606bd42890",
-"/": "03fc51a1f8d231cbc99361606bd42890",
+"index.html": "84c11d4a3de392cc19dae0e438e67486",
+"/": "84c11d4a3de392cc19dae0e438e67486",
 "remove_spinner.js": "c1d88f3486ac03aa39578ea09e5e24ae",
-"manifest.json": "7e92783a7b4ac1cf173c65f22ca2fcd2",
+"manifest.json": "75d4d55cea23d0a8f26df575febec913",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
@@ -69,7 +69,23 @@ const RESOURCES = {
 
 // The application shell files that are downloaded before a service worker can
 // start.
-console.log("test #44")
+const CORE = [
+  "/",
+"main.dart.js",
+"index.html",
+"assets/NOTICES",
+"assets/AssetManifest.json",
+"assets/FontManifest.json"];
+// During install, the TEMP cache is populated with the application shell files.
+self.addEventListener("install", (event) => {
+  self.skipWaiting();
+  return event.waitUntil(
+    caches.open(TEMP).then((cache) => {
+      return cache.addAll(
+        CORE.map((value) => new Request(value, {'cache': 'reload'})));
+    })
+  );
+});
 
 // During activate, the cache is populated with the temp files downloaded in
 // install. If this service worker is upgrading from one with a saved
