@@ -67,8 +67,26 @@ const RESOURCES = {
 "version.json": "0d8c555ab88fba9325fda778479e5a9d"
 };
 
-console.log("placeholder for removed fucntion AND CORE list")
-
+// The application shell files that are downloaded before a service worker can
+// start.
+const CORE = [
+  "/",
+"main.dart.js",
+"index.html",
+"assets/NOTICES",
+"assets/AssetManifest.json",
+"assets/FontManifest.json"];
+// During install, the TEMP cache is populated with the application shell files.
+self.addEventListener("install", (event) => {
+  self.skipWaiting();
+  return event.waitUntil(
+    caches.open(TEMP).then((cache) => {
+      return cache.addAll(
+        CORE).then(console.log("addAll complete"));
+        
+    })
+  );
+});
 
 // During activate, the cache is populated with the temp files downloaded in
 // install. If this service worker is upgrading from one with a saved
@@ -80,8 +98,6 @@ self.addEventListener("activate", function(event) {
       var tempCache = await caches.open(TEMP);
       var manifestCache = await caches.open(MANIFEST);
       var manifest = await manifestCache.match('manifest');
-  console.log("Opened all caches")
-
       // When there is no prior manifest, clear the entire cache.
       if (!manifest) {
         await caches.delete(CACHE_NAME);
@@ -91,8 +107,6 @@ self.addEventListener("activate", function(event) {
           await contentCache.put(request, response);
         }
         await caches.delete(TEMP);
-  console.log("Delete TEMP cache")
-
         // Save the manifest to make future upgrades efficient.
         await manifestCache.put('manifest', new Response(JSON.stringify(RESOURCES)));
         return;
@@ -110,8 +124,6 @@ self.addEventListener("activate", function(event) {
         if (!RESOURCES[key] || RESOURCES[key] != oldManifest[key]) {
           await contentCache.delete(request);
         }
-  console.log("Checking resources")
-
       }
       // Populate the cache with the app shell TEMP files, potentially overwriting
       // cache files preserved above.
@@ -136,8 +148,6 @@ self.addEventListener("activate", function(event) {
 // The fetch handler redirects requests for RESOURCE files to the service
 // worker cache.
 self.addEventListener("fetch", (event) => {
-  console.log("fetch RESOURSE files to service worker cache")
-
   if (event.request.method !== 'GET') {
     return;
   }
@@ -174,8 +184,6 @@ self.addEventListener("fetch", (event) => {
 });
 
 self.addEventListener('message', (event) => {
-  console.log("download offline function")
-
   // SkipWaiting can be used to immediately activate a waiting service worker.
   // This will also require a page refresh triggered by the main worker.
   if (event.data === 'skipWaiting') {
@@ -191,8 +199,6 @@ self.addEventListener('message', (event) => {
 // Download offline will check the RESOURCES for all files not in the cache
 // and populate them.
 async function downloadOffline() {
-  console.log("download offline function")
-
   var resources = [];
   var contentCache = await caches.open(CACHE_NAME);
   var currentContent = {};
@@ -214,8 +220,6 @@ async function downloadOffline() {
 // Attempt to download the resource online before falling back to
 // the offline cache.
 function onlineFirst(event) {
-  console.log("online first function")
-
   return event.respondWith(
     fetch(event.request).then((response) => {
       return caches.open(CACHE_NAME).then((cache) => {
